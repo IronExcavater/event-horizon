@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 98882807}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.295, y: 0, z: -0.7}
+  m_LocalPosition: {x: 0.233, y: 0, z: -0.7}
   m_LocalScale: {x: 0.48735, y: 0.48735, z: 0.48735}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,6 +390,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696197219}
   - component: {fileID: 696197220}
+  - component: {fileID: 696197221}
   m_Layer: 0
   m_Name: RocketPlayer
   m_TagString: Untagged
@@ -428,6 +429,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 5
   moveSpeed: 10
+--- !u!50 &696197221
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696197218}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &790268266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1444,7 @@ Transform:
   m_GameObject: {fileID: 2113433178}
   serializedVersion: 2
   m_LocalRotation: {x: -0.1118591, y: 0.06626201, z: -0.69820315, w: 0.7039953}
-  m_LocalPosition: {x: -0.15600002, y: 0, z: 0}
+  m_LocalPosition: {x: -0.21800001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
