@@ -52,11 +52,11 @@ public class PlayerController : MonoBehaviour
         RotateSelf();
         MoveTowardsTarget();
 
-        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.deltaTime * 6);
+        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.fixedDeltaTime * 6);
 
         if (currentFuel > 0f)
         {
-            float drain = SpeedMultiplier() * fuelDrainRate * Time.deltaTime;
+            float drain = SpeedMultiplier() * fuelDrainRate * Time.fixedDeltaTime;
             currentFuel = Mathf.Max(currentFuel - drain, 0f);
 
             /*if (currentFuel <= 0f)
