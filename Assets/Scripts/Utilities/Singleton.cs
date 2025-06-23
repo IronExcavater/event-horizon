@@ -17,33 +17,32 @@ namespace Utilities
         {
             get
             {
-                if (_instance == null) _instance = FindAnyObjectByType<T>();
+                if (HasInstance) _instance = FindAnyObjectByType<T>();
                 return _instance;
             }
         }
 
         protected virtual void Awake()
         {
-            if (_instance == null)
+            if (!HasInstance)
             {
                 _instance = this as T;
-                if (IsPersistent()) DontDestroyOnLoad(gameObject);
+                if (IsPersistent) DontDestroyOnLoad(gameObject);
             }
             else if (_instance != this) Destroy(gameObject);
         }
 
-        public bool IsPersistent()
-        {
-            return typeof(T).GetCustomAttributes(typeof(DoNotDestroySingletonAttribute), true).Length > 0;
-        }
+        public static bool HasInstance => FindAnyObjectByType<T>() != null;
+
+        public bool IsPersistent => typeof(T).GetCustomAttributes(typeof(DoNotDestroySingletonAttribute), true).Length > 0;
 
         public override string ToString()
         {
-            if (_instance == null)
+            if (!HasInstance)
                 return $"Singleton<{typeof(T).Name}> (uninitialized)";
 
             var sceneInfo = _instance.gameObject.scene.name;
-            var persistentInfo = IsPersistent() ? " [DontDestroyOnLoad]" : "";
+            var persistentInfo = IsPersistent ? " [DontDestroyOnLoad]" : "";
 
             return $"{_instance.name} Singleton<{typeof(T).Name}> in Scene '{sceneInfo}'{persistentInfo}";
         }
