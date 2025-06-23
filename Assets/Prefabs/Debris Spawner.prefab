@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8400066333835173140}
   - component: {fileID: 8697116588186862890}
   - component: {fileID: 6640438902702340309}
-  - component: {fileID: -1183841140892788467}
+  - component: {fileID: 1820094009893404373}
   m_Layer: 0
   m_Name: Debris Spawner
   m_TagString: Untagged
@@ -68,13 +68,16 @@ MonoBehaviour:
   gravity: 1
   maxBlackholeSize: 10
   lerpSpeed: 1
---- !u!135 &-1183841140892788467
-SphereCollider:
+--- !u!58 &1820094009893404373
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7635165534698409316}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -83,9 +86,21 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
   m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}

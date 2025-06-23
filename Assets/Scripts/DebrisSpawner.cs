@@ -77,6 +77,11 @@ public class DebrisSpawner : MonoBehaviour
         minDist = Mathf.Clamp(minDist, defaultMinDist, Mathf.Infinity);
         maxDist = Mathf.Clamp(maxDist, defaultMaxDist, Mathf.Infinity);
     }
+    public void SetDefaultDist(float _maxSize)
+    {
+        defaultMinDist = _maxSize * 2;
+        defaultMaxDist = defaultMinDist + _maxSize;
+    }
 
     private void OnDrawGizmosSelected()
     {
