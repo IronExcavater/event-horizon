@@ -66,14 +66,17 @@ public class Blackhole : MonoBehaviour
             scale.currentScale = targetRadius;
 
             //counter
-            debrisCount++;
+            debrisCount += Mathf.RoundToInt(debrisSize);
 
             //reduce blackhole size when max size is reached
             if(targetRadius >= maxBlackholeSize)
             {
                 spawner.SetDefaultDist(maxBlackholeSize);
-                resetCount += (int)debrisSize;
+                resetCount++;
                 targetRadius = 1f;
+
+                Debug.Log("Debris Count: " + debrisCount + ", Reset(s): " + resetCount);
+
                 Invoke("SizeReset", 0.1f);
             }
 
@@ -88,7 +91,5 @@ public class Blackhole : MonoBehaviour
     {
         //reset size
         scale.currentScale = targetRadius;
-
-        Debug.Log("Debris Count: " + debrisCount + ", Reset(s): " + resetCount);
     }
 }

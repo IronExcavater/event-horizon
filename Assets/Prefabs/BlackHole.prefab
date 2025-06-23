@@ -5390,11 +5390,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debris:
+  - {fileID: 11400000, guid: e9bdbd807c7b7dc4b8f8e88973c8e34c, type: 2}
   - {fileID: 11400000, guid: 8444323769d087548ad574d70986f31d, type: 2}
+  - {fileID: 11400000, guid: 97fc713332f26b84ca0da2b36fcc5604, type: 2}
   - {fileID: 11400000, guid: 4d8cef153caa4d14cb87a51ca7ee9be6, type: 2}
-  defaultMinDist: 11
-  defaultMaxDist: 16
+  - {fileID: 11400000, guid: 72393f2cfc0752c4a80643dde1caac9a, type: 2}
+  defaultMinDist: 20
+  defaultMaxDist: 25
   spawnOnAwake: 1
+  isSpawning: 1
+  spawnInterval: 1
+  spawnRamp: 0.25
+  minInterval: 0.25
 --- !u!1 &5748917216569387724
 GameObject:
   m_ObjectHideFlags: 0
