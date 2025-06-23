@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557178bd8e20d074791f640e10bff626, type: 3}
+  m_Name: NormalDebris
+  m_EditorClassIdentifier: 
+  spawnWeight: 100
+  debris:
+  - {fileID: 2804806730040335742, guid: 93539ff4e3acadc46a5dbe5a1f3968c3, type: 3}
+  - {fileID: 2804806730040335742, guid: 66004f05aa400784c892ba7880cdffb6, type: 3}
