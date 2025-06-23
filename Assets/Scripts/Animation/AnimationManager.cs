@@ -33,8 +33,11 @@ namespace Animation
     {
         public Object Target { get; }
         private readonly Action<T> _setter;
-        private readonly T _startValue;
-        private readonly T _endValue;
+        private readonly Func<T> _getter;
+
+        private T _startValue;
+        private T _endValue;
+        private T _currentValue;
 
         private readonly float _startTime;
         private readonly float _duration;
@@ -43,7 +46,8 @@ namespace Animation
 
         public bool IsDirty { get; set; }
 
-        public Tween(Object target, Action<T> setter, T startValue, T endValue, float duration, Easing easing, bool scaled = true)
+        public Tween(Object target, Action<T> setter, T startValue, T endValue, float duration = 1,
+            Easing easing = Easing.EaseInOutCubic, bool scaled = true)
         {
             Target = target;
             _setter = setter;
@@ -60,13 +64,35 @@ namespace Animation
             Instance._tweens.Add(this);
         }
 
+        public Tween(Object target, Action<T> setter, T startValue, Func<T> endValue, float duration = 1,
+            Easing easing = Easing.EaseInCubic, bool scaled = true)
+        {
+            Target = target;
+            _setter = setter;
+            _startValue = startValue;
+            _getter = endValue;
+            _setter(startValue);
+
+            _startTime = scaled ? Time.time : Time.unscaledTime;
+            _duration = duration;
+            _easing = easing;
+            _scaled = scaled;
+
+            IsDirty = false;
+            Instance._tweens.Add(this);
+        }
+
         private float ElapsedTime => (_scaled ? Time.time : Time.unscaledTime) - _startTime;
 
         public void Update()
         {
+            if (_getter != null) _endValue = _getter.Invoke();
+
             var t = Mathf.Clamp01(ElapsedTime / _duration);
-            _setter(Lerp(_startValue, _endValue, EasingT(t, _easing)));
             if (t >= 1) IsDirty = true;
+
+            _currentValue = Lerp(_startValue, _endValue, EasingT(t, _easing));
+            _setter(_currentValue);
         }
 
         private static T Lerp(T a, T b, float t)
@@ -84,7 +110,13 @@ namespace Animation
     }
 
     public static Tween<T> CreateTween<T>(Object target, Action<T> setter, T startValue, T endValue, float duration,
-        Easing easing, bool scaled = true)
+        Easing easing = Easing.EaseInOutCubic, bool scaled = true)
+    {
+        return new Tween<T>(target, setter, startValue, endValue, duration, easing, scaled);
+    }
+
+    public static Tween<T> CreateTween<T>(Object target, Action<T> setter, T startValue, Func<T> endValue, float duration,
+        Easing easing = Easing.EaseInOutCubic, bool scaled = true)
     {
         return new Tween<T>(target, setter, startValue, endValue, duration, easing, scaled);
     }
