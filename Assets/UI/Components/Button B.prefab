@@ -200,8 +200,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button B
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 567cc89ca9da46e46a1506420022fabd, type: 2}
-  m_sharedMaterial: {fileID: 8603482152934782969, guid: 567cc89ca9da46e46a1506420022fabd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
+  m_sharedMaterial: {fileID: 2253126172746671630, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 32
-  m_VerticalAlignment: 4096
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

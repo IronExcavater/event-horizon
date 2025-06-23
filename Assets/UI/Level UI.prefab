@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Event Horizon
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
+  m_sharedMaterial: {fileID: 2253126172746671630, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.65
+  m_fontSize: 58.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -792,11 +792,11 @@ PrefabInstance:
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2253126172746671630, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 4031938523564420552, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -918,11 +918,11 @@ PrefabInstance:
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2253126172746671630, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 8204495613749044243, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1032,11 +1032,11 @@ PrefabInstance:
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2253126172746671630, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 4031938523564420552, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1172,11 +1172,11 @@ PrefabInstance:
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 11400000, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 869174698260869675, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 2253126172746671630, guid: 03fafffd55111d04b809f36bf8e207f7, type: 2}
     - target: {fileID: 8204495613749044243, guid: 2d037223a107f424cb0310f9e7414fe5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
