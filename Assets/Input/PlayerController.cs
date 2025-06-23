@@ -18,11 +18,18 @@ public class PlayerController : MonoBehaviour
     {
         RotateSelf();
         MoveTowardsTarget();
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isBoosting = true;
+        }
+        else
+            isBoosting = false;
     }
 
     private void LateUpdate()
     {
-        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.deltaTime * 5);
+        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.deltaTime * 6);
     }
 
     void RotateSelf()
@@ -39,14 +46,14 @@ public class PlayerController : MonoBehaviour
         transform.position += transform.right * Time.deltaTime * moveSpeed * SpeedMultiplier();
     }
 
-    Vector2 TargetPos()
+    Vector2 MouseTargetPos()
     {
         return mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
     }
 
     Vector2 TargetDir()
     {
-        return TargetPos() - (Vector2)transform.position;
+        return MouseTargetPos() - (Vector2)transform.position;
     }
 
     /// <summary>
@@ -55,6 +62,7 @@ public class PlayerController : MonoBehaviour
     /// <returns></returns>
     float SpeedMultiplier()
     {
-        return Mathf.Clamp(Vector2.Distance(TargetPos(), transform.position)/2.5f, isBoosting?0.5f:0, isBoosting?1:2);
+        Debug.Log(Vector2.Distance(MouseTargetPos(), transform.position)/2);
+        return Mathf.Clamp(Vector2.Distance(MouseTargetPos(), transform.position)/2, isBoosting?0.5f:0, isBoosting?2:1);
     }
 }
