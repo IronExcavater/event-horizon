@@ -37,7 +37,6 @@ namespace Animation
 
         private T _startValue;
         private T _endValue;
-        private T _currentValue;
 
         private readonly float _startTime;
         private readonly float _duration;
@@ -91,22 +90,18 @@ namespace Animation
             var t = Mathf.Clamp01(ElapsedTime / _duration);
             if (t >= 1) IsDirty = true;
 
-            _currentValue = Lerp(_startValue, _endValue, EasingT(t, _easing));
-            _setter(_currentValue);
+            _setter(Lerp(_startValue, _endValue, EasingT(t, _easing)));
         }
 
-        private static T Lerp(T a, T b, float t)
+        private static T Lerp(T a, T b, float t) => (a, b) switch
         {
-            return a switch
-            {
-                float af when b is float bf => (T)(object)Mathf.Lerp(af, bf, t),
-                Vector2 av2 when b is Vector2 bv2 => (T)(object)Vector2.Lerp(av2, bv2, t),
-                Vector3 av3 when b is Vector3 bv3 => (T)(object)Vector3.Lerp(av3, bv3, t),
-                Quaternion aq when b is Quaternion bq => (T)(object)Quaternion.Slerp(aq, bq, t),
-                Color ac when b is Color bc => (T)(object)Color.Lerp(ac, bc, t),
-                _ => throw new InvalidOperationException($"Unsupported type for tweening: {typeof(T)}")
-            };
-        }
+            (float af, float bf) => (T)(object)Mathf.Lerp(af, bf, t),
+            (Vector2 av2, Vector2 bv2) => (T)(object)Vector2.Lerp(av2, bv2, t),
+            (Vector3 av3, Vector3 bv3) => (T)(object)Vector3.Lerp(av3, bv3, t),
+            (Quaternion aq, Quaternion bq) => (T)(object)Quaternion.Slerp(aq, bq, t),
+            (Color ac, Color bc) => (T)(object)Color.Lerp(ac, bc, t),
+            _ => throw new InvalidOperationException($"Unsupported type for tweening: {typeof(T)}")
+        };
     }
 
     public static Tween<T> CreateTween<T>(Object target, Action<T> setter, T startValue, T endValue, float duration,
