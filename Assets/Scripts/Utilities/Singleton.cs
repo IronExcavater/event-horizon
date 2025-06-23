@@ -27,15 +27,12 @@ namespace Utilities
             if (_instance == null)
             {
                 _instance = this as T;
-                if (IsPersistent()) DontDestroyOnLoad(gameObject);
+                if (IsPersistent) DontDestroyOnLoad(gameObject);
             }
             else if (_instance != this) Destroy(gameObject);
         }
 
-        public bool IsPersistent()
-        {
-            return typeof(T).GetCustomAttributes(typeof(DoNotDestroySingletonAttribute), true).Length > 0;
-        }
+        public bool IsPersistent => typeof(T).GetCustomAttributes(typeof(DoNotDestroySingletonAttribute), true).Length > 0;
 
         public override string ToString()
         {
@@ -43,7 +40,7 @@ namespace Utilities
                 return $"Singleton<{typeof(T).Name}> (uninitialized)";
 
             var sceneInfo = _instance.gameObject.scene.name;
-            var persistentInfo = IsPersistent() ? " [DontDestroyOnLoad]" : "";
+            var persistentInfo = IsPersistent ? " [DontDestroyOnLoad]" : "";
 
             return $"{_instance.name} Singleton<{typeof(T).Name}> in Scene '{sceneInfo}'{persistentInfo}";
         }
