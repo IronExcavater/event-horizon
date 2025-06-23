@@ -14,7 +14,6 @@ namespace Utilities
                 c.gameObject.layer = layer;
         }
 
-
         public static Vector3 ClosestPointOnLine(this Vector3 point, Vector3 linePoint, Vector3 lineDirection,
             float length = float.MaxValue)
         {
