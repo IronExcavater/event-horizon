@@ -1,21 +1,34 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     float rotateSpeed = 5f,
-          moveSpeed = 10f;
+          moveSpeed = 10f,
+          maxFuel = 100f,
+          fuelDrainRate = 10f;
+    [SerializeField] Slider fuelSlider;
 
     Camera mainCam;
     Rigidbody2D rb;
 
     bool isBoosting = false;
+    float currentFuel;
 
     private void Awake()
     {
         mainCam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
+        currentFuel = maxFuel;
+
+        if (fuelSlider)
+        {
+            fuelSlider.minValue = 0;
+            fuelSlider.maxValue = maxFuel;
+            fuelSlider.value = currentFuel;
+        }
     }
 
     private void Update()
@@ -23,7 +36,7 @@ public class PlayerController : MonoBehaviour
         RotateSelf();
         MoveTowardsTarget();
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && currentFuel > 0f)
         {
             isBoosting = true;
         }
@@ -36,6 +49,25 @@ public class PlayerController : MonoBehaviour
         mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.deltaTime * 6);
 
         // Do the fuel thing here
+        if (isBoosting && currentFuel > 0f)
+        {
+            float drain = SpeedMultiplier() * fuelDrainRate * Time.deltaTime;
+            currentFuel = Mathf.Max(currentFuel - drain, 0f);
+
+            if (currentFuel <= 0f)
+                isBoosting = false;
+        }
+        else
+        {
+            float drain = fuelDrainRate * Time.deltaTime;
+            currentFuel = Mathf.Max(currentFuel - drain, 0f);
+
+            if (currentFuel <= 0f)
+                isBoosting = false;
+        }
+
+        if (fuelSlider != null)
+            fuelSlider.value = currentFuel;
     }
 
     void RotateSelf()
