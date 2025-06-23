@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using Utilities;
 using Utilities.Observables;
 
@@ -21,7 +20,6 @@ namespace UI
 
         [Header("Pause Menu")]
         [SerializeField] private CanvasGroup pauseMenu;
-        [SerializeField] private Button pauseButton;
 
         public readonly Property<bool> Paused = new();
         private PlayerInput _playerInput;
@@ -47,22 +45,19 @@ namespace UI
 
             Paused.AddListener((_, change) =>
             {
-                Cursor.lockState = change.NewValue ? CursorLockMode.None : CursorLockMode.Locked;
-                Cursor.visible = change.NewValue;
-
                 if (_playerInput != null)
                 {
                     _playerInput.SwitchCurrentActionMap(change.NewValue ? "UI" : "Player");
                 }
 
                 if (_fadeCoroutine != null) StopCoroutine(_fadeCoroutine);
-                _fadeCoroutine = StartCoroutine(FadeCoroutine(pauseMenu, Paused.Value ? 1f : 0f, 1));
+                _fadeCoroutine = StartCoroutine(FadeCanvasGroup(pauseMenu, Paused.Value ? 1f : 0f, 1));
             });
         }
 
         private void Update()
         {
-            if (_playerInput.actions["Pause"].WasPressedThisFrame()) OnPauseButton();
+            if (_playerInput != null && _playerInput.actions["Pause"].WasPressedThisFrame()) OnPauseButton();
         }
 
         public void OnPauseButton()
@@ -72,16 +67,15 @@ namespace UI
 
         public void OnExitButton()
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            LoadManager.LoadScene(LoadManager.MainMenuSceneIndex, LoadSceneMode.Single);
+            LoadManager.LoadScene(0, LoadSceneMode.Single);
         }
 
-        private IEnumerator FadeCoroutine(CanvasGroup canvasGroup, float targetAlpha, float duration)
+        private IEnumerator FadeCanvasGroup(CanvasGroup canvasGroup, float targetAlpha, float duration)
         {
             var elapsedTime = 0f;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
+            canvasGroup.gameObject.SetActive(true);
 
             while (elapsedTime < duration)
             {
@@ -95,6 +89,7 @@ namespace UI
             canvasGroup.alpha = targetAlpha;
             canvasGroup.interactable = targetAlpha.Equals(1f);
             canvasGroup.blocksRaycasts = targetAlpha.Equals(1f);
+            if (targetAlpha == 0) canvasGroup.gameObject.SetActive(false);
             _fadeCoroutine = null;
         }
     }

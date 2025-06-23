@@ -23,23 +23,6 @@ namespace Load
 
         public static bool IsLoading;
 
-        public static int MainMenuSceneIndex = 2;
-
-        public static int ActiveLevelBuildIndex
-        {
-            get
-            {
-                for (int i = 0; i < SceneManager.sceneCount; i++)
-                {
-                    Scene scene = SceneManager.GetSceneAt(i);
-                    // Assumed that elevator scene has buildIndex of 1
-                    if (scene.buildIndex > 1) return scene.buildIndex;
-                }
-
-                return -1;
-            }
-        }
-
         public class Data
         {
             public float MasterVolume;
@@ -47,6 +30,8 @@ namespace Load
             public float SfxVolume;
             public bool VSync;
             public FullScreenMode FullScreenMode = FullScreenMode.FullScreenWindow;
+
+            public float MaxScore;
         }
 
         protected override void Awake()
@@ -85,7 +70,7 @@ namespace Load
             if (!IsValidBuildIndex(buildIndex)) yield break;
             IsLoading = true;
             Debug.Log($"Loading scene {buildIndex}");
-            if (loadMode == LoadSceneMode.Single && TransitionUI.HasInstance)
+            if (loadMode == LoadSceneMode.Single && TransitionUI.Instance != null)
                 yield return TransitionUI.FadeTransition(false);
 
             yield return SceneManager.LoadSceneAsync(buildIndex, loadMode);
@@ -94,7 +79,7 @@ namespace Load
             OnSceneLoaded?.Invoke(scene);
 
             Debug.Log($"Loaded scene {buildIndex}");
-            if (loadMode == LoadSceneMode.Single && TransitionUI.HasInstance)
+            if (loadMode == LoadSceneMode.Single && TransitionUI.Instance != null)
                 yield return TransitionUI.FadeTransition(true);
         }
 

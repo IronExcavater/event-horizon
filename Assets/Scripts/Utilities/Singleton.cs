@@ -17,14 +17,14 @@ namespace Utilities
         {
             get
             {
-                if (HasInstance) _instance = FindAnyObjectByType<T>();
+                if (_instance == null) _instance = FindAnyObjectByType<T>();
                 return _instance;
             }
         }
 
         protected virtual void Awake()
         {
-            if (!HasInstance)
+            if (_instance == null)
             {
                 _instance = this as T;
                 if (IsPersistent) DontDestroyOnLoad(gameObject);
@@ -32,13 +32,11 @@ namespace Utilities
             else if (_instance != this) Destroy(gameObject);
         }
 
-        public static bool HasInstance => FindAnyObjectByType<T>() != null;
-
         public bool IsPersistent => typeof(T).GetCustomAttributes(typeof(DoNotDestroySingletonAttribute), true).Length > 0;
 
         public override string ToString()
         {
-            if (!HasInstance)
+            if (_instance == null)
                 return $"Singleton<{typeof(T).Name}> (uninitialized)";
 
             var sceneInfo = _instance.gameObject.scene.name;
