@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5113542336315919092}
   - component: {fileID: 5436400024384438054}
   - component: {fileID: -5660009816238298132}
+  - component: {fileID: -535472340671953634}
   m_Layer: 0
-  m_Name: NormalDebris 1
+  m_Name: SmallDebris 2
   m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,3 +137,16 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 56
   m_CollisionDetection: 1
+--- !u!114 &-535472340671953634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804806730040335742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e510e64b0787f647a30016cf6cf3b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 1

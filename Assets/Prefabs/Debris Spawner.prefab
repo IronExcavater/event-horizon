@@ -49,8 +49,9 @@ MonoBehaviour:
   debris:
   - {fileID: 11400000, guid: 8444323769d087548ad574d70986f31d, type: 2}
   - {fileID: 11400000, guid: 4d8cef153caa4d14cb87a51ca7ee9be6, type: 2}
-  minDist: 11
-  maxDist: 14
+  defaultMinDist: 11
+  defaultMaxDist: 16
+  spawnOnAwake: 1
 --- !u!114 &6640438902702340309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useGravity: 1
   gravity: 1
+  maxBlackholeSize: 10
+  lerpSpeed: 1
 --- !u!135 &-1183841140892788467
 SphereCollider:
   m_ObjectHideFlags: 0

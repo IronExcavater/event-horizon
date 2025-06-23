@@ -7,16 +7,24 @@ public class DebrisSpawner : MonoBehaviour
 {
     [SerializeField] List<Debris> debris;
 
-    [SerializeField] float minDist;
-    [SerializeField] float maxDist;
+    [SerializeField] float defaultMinDist;
+    [SerializeField] float defaultMaxDist;
+
+    float minDist;
+    float maxDist;
+
+    public bool spawnOnAwake = true;
 
     Blackhole blackhole;
 
     private void Awake()
     {
         blackhole = GetComponent<Blackhole>();
+
+        minDist = defaultMinDist;
+        maxDist = defaultMaxDist;
     }
-    public void SpawnDebris()
+    public void SpawnRandomDebris()
     {
         //get random direction
         float spawnDirX = Random.Range(-1.0f, 1.0f);
@@ -61,6 +69,15 @@ public class DebrisSpawner : MonoBehaviour
         blackhole.Add(Instantiate(debrisToSpawn, transform.position + new Vector3(spawnPos.x * randomDist, spawnPos.y * randomDist, 0), Quaternion.Euler(new Vector3(0, 0, randomRotation))));
     }
 
+    public void ExtendSpawner(float _blackholeRad)
+    {
+        minDist = _blackholeRad * 2;
+        maxDist = minDist + _blackholeRad;
+
+        minDist = Mathf.Clamp(minDist, defaultMinDist, Mathf.Infinity);
+        maxDist = Mathf.Clamp(maxDist, defaultMaxDist, Mathf.Infinity);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
@@ -73,7 +90,7 @@ public class DebrisSpawner : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            SpawnDebris();
+            SpawnRandomDebris();
         }
     }
 }
