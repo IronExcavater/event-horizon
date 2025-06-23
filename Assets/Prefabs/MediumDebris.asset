@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnWeight: 30
   debris:
-  - {fileID: 175594738163644139, guid: d5d0f70c0bf43bf4eb6963d29e006384, type: 3}
-  - {fileID: 8716970642750802454, guid: 0316440d731011e4ba397b819a49bf75, type: 3}
-  - {fileID: 4985750752216956993, guid: a13aa4c91f16c9e4cb14103c9d3ef83a, type: 3}
+  - {fileID: 2085528158908041506, guid: d5d0f70c0bf43bf4eb6963d29e006384, type: 3}
+  - {fileID: 9097439662657326117, guid: 0316440d731011e4ba397b819a49bf75, type: 3}
+  - {fileID: 5769202092677950765, guid: a13aa4c91f16c9e4cb14103c9d3ef83a, type: 3}
