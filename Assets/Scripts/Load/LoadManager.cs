@@ -32,6 +32,15 @@ namespace Load
             public FullScreenMode FullScreenMode = FullScreenMode.FullScreenWindow;
 
             public float MaxScore;
+            public float MaxTime;
+        }
+
+        public static void SaveNewScore(float score, float timeInSeconds)
+        {
+            if (score < GameData.MaxScore) return;
+            GameData.MaxScore = score;
+            GameData.MaxTime = timeInSeconds;
+            SaveData();
         }
 
         protected override void Awake()

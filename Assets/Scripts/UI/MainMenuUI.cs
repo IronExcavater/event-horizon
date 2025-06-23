@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using Load;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utilities;
 
 namespace UI
 {
@@ -12,6 +14,9 @@ namespace UI
         [SerializeField] private CanvasGroup mainCanvasGroup;
         [SerializeField] private CanvasGroup creditsCanvasGroup;
         [SerializeField] private CanvasGroup settingsCanvasGroup;
+
+        [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private TextMeshProUGUI timerText;
 
         private CanvasGroup _currentCanvasGroup;
 
@@ -26,6 +31,12 @@ namespace UI
                 _currentCanvasGroup = value;
                 StartCoroutine(FadeCanvasGroup(_currentCanvasGroup, 1, fadeDuration));
             }
+        }
+
+        private void Awake()
+        {
+            scoreText.text = LoadManager.GameData.MaxScore.ToString();
+            timerText.text = LoadManager.GameData.MaxTime.FormatToTime();
         }
 
         public void OnStart()
