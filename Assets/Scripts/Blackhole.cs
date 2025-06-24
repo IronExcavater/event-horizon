@@ -1,37 +1,46 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(BlackHoleScaleManager))]
 public class Blackhole : MonoBehaviour
 {
-    List<Rigidbody> debrisRb = new List<Rigidbody>();
-    SphereCollider coll;
+    List<Rigidbody2D> debrisRb = new List<Rigidbody2D>();
+    CircleCollider2D coll;
     DebrisSpawner spawner;
+    BlackHoleScaleManager scale;
 
     [SerializeField] bool useGravity = true;
     public float gravity = 1f;
     public float maxBlackholeSize;
 
-    float previousRadius;
     float targetRadius;
+    int resetCount = 0;
 
-    [SerializeField] float lerpSpeed = 10f;
-    float currentLerpTime;
-    float totalLerpTime;
+    int debrisCount = 0;
 
     private void Awake()
     {
-        coll = GetComponent<SphereCollider>();
+        coll = GetComponent<CircleCollider2D>();
         spawner = GetComponent<DebrisSpawner>();
+        scale = GetComponent<BlackHoleScaleManager>();
 
-        targetRadius = coll.radius;
-        previousRadius = targetRadius;
+        targetRadius = transform.localScale.x;
     }
 
     public void Add(GameObject _obj)
     {
-        debrisRb.Add(_obj.GetComponent<Rigidbody>());
+        debrisRb.Add(_obj.GetComponent<Rigidbody2D>());
+    }
+    //public void AddForce()
+    //{
+        
+    //}
 
+    public void RemoveDebris(Rigidbody2D _debrisRb)
+    {
+        debrisRb.Remove(_debrisRb);
     }
 
     private void FixedUpdate()
@@ -49,36 +58,44 @@ public class Blackhole : MonoBehaviour
             }
         }
     }
-    private void Update()
-    {
-        if(targetRadius != coll.radius)
-        {
-            currentLerpTime += lerpSpeed * Time.deltaTime;
-            coll.radius = Mathf.Lerp(previousRadius, targetRadius, currentLerpTime / totalLerpTime);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Debris"))
         {
             //increase blackhole size
-            previousRadius = coll.radius;
-            targetRadius += other.gameObject.GetComponent<Consumable>().size / 8;
-            gravity = Mathf.Pow(coll.radius, 1.5f);
-
-            //calculate lerp time
-            currentLerpTime = 0;
-            totalLerpTime = Mathf.Abs(targetRadius - coll.radius) / lerpSpeed;
+            Consumable debrisProperties = other.gameObject.GetComponent<Consumable>();
+            targetRadius += debrisProperties.size / (8 * targetRadius);
+            gravity = Mathf.Pow(targetRadius + resetCount * maxBlackholeSize, 1.2f);
 
             //extend spawn area
-            spawner.ExtendSpawner(coll.radius);
+            spawner.ExtendSpawner(targetRadius);
+
+            //increase visual size
+            scale.currentScale = targetRadius;
+
+            //counter
+            debrisCount += Mathf.RoundToInt(debrisProperties.size);
 
             //reduce blackhole size when max size is reached
+            if(targetRadius >= maxBlackholeSize)
+            {
+                spawner.SetDefaultDist(maxBlackholeSize);
+                resetCount++;
+                targetRadius = 1f;
+
+                Debug.Log("Debris Count: " + debrisCount + ", Reset(s): " + resetCount);
+
+                Invoke("SizeReset", 0.1f);
+            }
 
             //destroy debris
-            debrisRb.Remove(other.GetComponent<Rigidbody>());
-            Destroy(other.gameObject, 0.2f);
-            return;
+            debrisProperties.Damage();
         }
+    }
+
+    private void SizeReset()
+    {
+        //reset size
+        scale.currentScale = targetRadius;
     }
 }

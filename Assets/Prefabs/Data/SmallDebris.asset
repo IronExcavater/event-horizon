@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557178bd8e20d074791f640e10bff626, type: 3}
-  m_Name: FuelDebris
+  m_Name: SmallDebris
   m_EditorClassIdentifier: 
-  spawnWeight: 5
+  spawnWeight: 150
+  points: 100
   debris:
-  - {fileID: 2821427028988580322, guid: 36eb7e01d993cf041b78f85e28502827, type: 3}
+  - {fileID: 8533511749180424986, guid: 70826f43a65452e48854e73979f000d7, type: 3}
+  - {fileID: 2352185768625186490, guid: 993f9a7f704fd2848a560ef2edd41206, type: 3}
+  - {fileID: 7559873163727423282, guid: 15b33111f87ac5249b4dfa6ce62c1c02, type: 3}
