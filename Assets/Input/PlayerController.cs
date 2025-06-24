@@ -217,6 +217,6 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDeath()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 0.1f);
     }
 }

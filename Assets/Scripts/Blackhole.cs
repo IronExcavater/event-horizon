@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class Blackhole : MonoBehaviour
 
     int debrisCount = 0;
 
-    public PlayerController player;
+    PlayerController player;
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class Blackhole : MonoBehaviour
         scale = GetComponent<BlackHoleScaleManager>();
 
         targetRadius = transform.localScale.x;
+
+        player = FindObjectOfType<PlayerController>();
     }
 
     public void Add(GameObject _obj)
@@ -92,6 +95,12 @@ public class Blackhole : MonoBehaviour
 
             //destroy debris
             debrisProperties.Damage();
+        }
+
+        if (other.CompareTag("Rocket"))
+        {
+            other.enabled = false;
+            player.PlayerDeath();
         }
     }
 
