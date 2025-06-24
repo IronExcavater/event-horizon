@@ -57,16 +57,23 @@ namespace UI
 
         private void Update()
         {
-            if (_playerInput != null && _playerInput.actions["Pause"].WasPressedThisFrame()) OnPauseButton();
+            if (_playerInput == null) FindAnyObjectByType<PlayerInput>();
+            if (_playerInput != null && _playerInput.actions["Pause"].WasPressedThisFrame())
+            {
+                AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
+                OnPauseButton();
+            }
         }
 
         public void OnPauseButton()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             Paused.Value = !Paused.Value;
         }
 
         public void OnExitButton()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             LoadManager.SaveNewScore(Level.GetScore, Level.GetTime);
             LoadManager.LoadScene(0, LoadSceneMode.Single);
         }

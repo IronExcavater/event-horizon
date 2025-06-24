@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
 
         engineSource.volume = moveSpeed * SpeedMultiplier();
-        
+
     }
 
     private void FixedUpdate()
@@ -86,10 +86,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Debris"))
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.explosion);
             currentFuel -= 20f;
         }
         else if (collision.CompareTag("Powerup"))
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.powerUp);
             /*currentFuel = maxFuel;*/
             StartCoroutine(FuelBuff(5f));
             Destroy(collision.gameObject);
@@ -148,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator ImpactCoroutine(Vector3 hitDir, float impactMagnitude)
     {
-        float decayRate = 5f; 
+        float decayRate = 5f;
         Vector3 impactVelocity = hitDir.normalized * impactMagnitude;
         while (impactVelocity.magnitude > 0.1f)
         {

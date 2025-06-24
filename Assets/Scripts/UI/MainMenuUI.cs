@@ -41,26 +41,31 @@ namespace UI
 
         public void OnStart()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             LoadManager.LoadScene(1, LoadSceneMode.Single);
         }
 
         public void OnBack()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             CurrentCanvasGroup = creditsCanvasGroup;
         }
 
         public void OnCredits()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             CurrentCanvasGroup = creditsCanvasGroup;
         }
 
         public void OnSettings()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             CurrentCanvasGroup = settingsCanvasGroup;
         }
 
         public void OnExit()
         {
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
             #elif UNITY_STANDALONE

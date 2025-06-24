@@ -5,9 +5,9 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Audio { get; private set; }
-    
+
     public AudioMixer audioMixer;
-    
+
     [Header("Audio Sources:")]
     [SerializeField] private AudioSource[] musicSource;
     [SerializeField] private AudioSource sfxSource;
@@ -18,8 +18,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("SFX Clips:")]
     public AudioClip grapplingHook;
-    public AudioClip explosion, click, powerDown;
-    
+    public AudioClip explosion, click, powerDown, powerUp;
+
     private MusicTuple currentMusic;
     public List<MusicTuple> loopMusic = new();
     private int sourceToggle;
@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    
+
     private void Update()
     {
         LoopMusic();
@@ -44,11 +44,11 @@ public class AudioManager : MonoBehaviour
     private void LoopMusic()
     {
         if (AudioSettings.dspTime < endDspTime - 1 || loopMusic.Count == 0) return;
-        
+
         currentMusic = GetNextMusicInLoop();
         ScheduleMusicClip(currentMusic, endDspTime);
     }
-    
+
     public static bool IsCurrentClip(AudioClip clip)
     {
         var currentClip = GetCurrentClip();
@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
     public static void PlayMusicOneShotNextBar(MusicTuple clip) { Audio.ScheduleMusicClip(clip, Audio.NextBar()); }
     public static void PlayMusicOneShotNextBeat(MusicTuple clip) { Audio.ScheduleMusicClip(clip, Audio.NextBeat()); }
     public static void PlayMusicOneShotNow(MusicTuple clip) { Audio.ScheduleMusicClip(clip, AudioSettings.dspTime); }
-    
+
     public static void PlayMusicLoopNextBar(MusicTuple clip) { Audio.PlayMusicLoop(clip, Audio.NextBar()); }
     public static void PlayMusicLoopNextBeat(MusicTuple clip) { Audio.PlayMusicLoop(clip, Audio.NextBeat()); }
     public static void PlayMusicLoopNow(MusicTuple clip) { Audio.PlayMusicLoop(clip, AudioSettings.dspTime); }
@@ -72,8 +72,8 @@ public class AudioManager : MonoBehaviour
         AddMusicToLoop(musicExplorerSpace);
         AddMusicToLoop(musicTitan);
 
-        
-    }   
+
+    }
     public static void AddMusicToLoop(MusicTuple clip, int loopIndex = -1)
     {
         if (loopIndex == -1) Audio.loopMusic.Add(clip);
@@ -83,7 +83,7 @@ public class AudioManager : MonoBehaviour
         Audio.ScheduleMusicClip(clip, AudioSettings.dspTime);
         Audio.currentMusic = clip;
     }
-    
+
     private static MusicTuple GetNextMusicInLoop()
     {
         var nextIndex = Audio.currentMusic == null ? 0 : Audio.loopMusic.IndexOf(Audio.currentMusic) + 1;
@@ -99,7 +99,7 @@ public class AudioManager : MonoBehaviour
         AddMusicToLoop(clip, Audio.currentMusic == null ? 0 : loopMusic.IndexOf(Audio.currentMusic) + 1);
         currentMusic = clip;
     }
-    
+
     public static void PlaySfxOneShot(AudioClip clip)
     {
         Audio.sfxSource.PlayOneShot(clip);
