@@ -1,6 +1,8 @@
 using System.Collections;
+using Load;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -216,5 +218,8 @@ public class PlayerController : MonoBehaviour
     public void PlayerDeath()
     {
         Destroy(gameObject, 0.1f);
+        AudioManager.PlaySfxOneShot(AudioManager.Audio.explosion);
+        LoadManager.SaveNewScore(Level.GetScore, Level.GetTime);
+        LoadManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
