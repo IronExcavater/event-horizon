@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private RectTransform fuelGauge;
     [SerializeField] private Image fuelFillImage;
+    [SerializeField] Color fillCol;
 
     Camera mainCam;
     Rigidbody2D rb;
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
     bool isBoosting = false;
     float currentFuel;
     Vector3 impactOffset = Vector3.zero;
+    bool fuelBuffed = false;
+
+    public float cumulativeMass = 0;
 
     private void Awake()
     {
@@ -52,15 +56,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         RotateSelf();
-        MoveTowardsTarget();
 
         mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.fixedDeltaTime * 7);
 
         if (currentFuel > 0f)
         {
+            MoveTowardsTarget();
             float drain = SpeedMultiplier() * fuelDrainRate * Time.fixedDeltaTime;
-            currentFuel = Mathf.Max(currentFuel - drain, 0f);
-
+            currentFuel = Mathf.Max(currentFuel - drain, fuelBuffed?maxFuel:0);
             /*if (currentFuel <= 0f)
                 isBoosting = false;*/
         }
@@ -72,6 +75,36 @@ public class PlayerController : MonoBehaviour
             if (currentFuel <= 0f)
                 isBoosting = false;
         }*/
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Debris"))
+        {
+            currentFuel -= 20f;
+        }
+        else if (collision.CompareTag("Powerup"))
+        {
+            /*currentFuel = maxFuel;*/
+            StartCoroutine(FuelBuff(5f));
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public IEnumerator FuelBuff(float duration)
+    {
+        float t = 0f;
+        currentFuel = maxFuel;
+        fuelBuffed = true;
+        fuelFillImage.color = Color.green;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        fuelFillImage.color = fillCol;
+        fuelBuffed = false;
     }
 
     void RotateSelf()
@@ -132,9 +165,17 @@ public class PlayerController : MonoBehaviour
         float mouseDist = Vector2.Distance(MouseTargetPos(), transform.position);
         if (mouseDist < 0.3f)
             mouseDist = 0;
-        return !isBoosting ? Mathf.Clamp(mouseDist / 2, 0, 1) :
-                            Mathf.Clamp(mouseDist, 0.5f, 2);
+
+        Debug.Log(MassMultiplier());
+        return -MassMultiplier() + (!isBoosting ? Mathf.Clamp(mouseDist / 2, 0, 1):
+                                                    Mathf.Clamp(mouseDist, 0.5f, 2));
     }
+
+    float MassMultiplier()
+    {
+        return Mathf.Clamp(cumulativeMass, 0, 4f) / 5;
+    }
+
     Vector2 MouseTargetPos()
     {
         return mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));

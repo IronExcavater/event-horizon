@@ -4,10 +4,13 @@ using UnityEngine;
 public class GrapplingHook : MonoBehaviour
 {
     //Joint2D joint2D;
-    LineRenderer line;
-    Vector2 startPos;
+    LineRenderer trajectory;
     [SerializeField]
-    Vector2 targetPos;
+    LineRenderer grappleLine;
+
+    Vector3 startPos;
+    [SerializeField]
+    Vector3 targetPos;
     Transform parent;
 
     PlayerController pc;
@@ -27,7 +30,7 @@ public class GrapplingHook : MonoBehaviour
     private void Awake()
     {
         //joint2D = GetComponent<Joint2D>();
-        line = GetComponentInParent<LineRenderer>(true);
+        trajectory = GetComponentInParent<LineRenderer>(true);
         coll = GetComponent<Collider2D>();
     }
 
@@ -42,11 +45,11 @@ public class GrapplingHook : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            line.enabled = true;
+            trajectory.enabled = true;
         }
         else
         {
-            line.enabled = false;
+            trajectory.enabled = false;
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -66,7 +69,7 @@ public class GrapplingHook : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Debris"))
         {
             Rigidbody2D collRb = collision.GetComponent<Rigidbody2D>();
             collision.transform.parent = transform;
@@ -75,8 +78,17 @@ public class GrapplingHook : MonoBehaviour
             collRb.totalForce = Vector2.zero;
             collRb.totalTorque = 0;
             collRb.simulated = false;
+            pc.cumulativeMass += collRb.mass;
+
+            collision.tag = "Player";
 
             grappled = true;
+        }
+
+        if (collision.CompareTag("Powerup"))
+        {
+            StartCoroutine(pc.FuelBuff(6f));
+            Destroy(collision.gameObject);
         }
     }
 
@@ -85,15 +97,19 @@ public class GrapplingHook : MonoBehaviour
         transform.parent = setParent ? parent : null;
     }
 
-    IEnumerator Shoot(Vector2 _startPos, Vector2 _targetPos, float duration)
+    IEnumerator Shoot(Vector3 _startPos, Vector3 _targetPos, float duration)
     {
         float t = 0;
         while (t <= shootTime)
         {
-            transform.localPosition = Vector2.Lerp(_startPos, _targetPos, t / shootTime);
+            transform.localPosition = Vector3.Lerp(_startPos, _targetPos, t / shootTime);
+            grappleLine.SetPosition(1, new Vector3(transform.localPosition.x, 0, 0));
             t += Time.deltaTime;
             yield return null;
         }
+
+        transform.localPosition = _targetPos;
+        grappleLine.SetPosition(1, new Vector3(transform.localPosition.x, 0, 0));
 
         if (_targetPos.x > 1f)
             shootRoutine = StartCoroutine(Shoot(_targetPos, _startPos, retractTime));
@@ -103,7 +119,7 @@ public class GrapplingHook : MonoBehaviour
 
     IEnumerator LaunchItem()
     {
-        pc.ImpactCoroutine(transform.right * -1, 2);
+        pc.ImpactCoroutine(transform.right * -1, 10);
         coll.enabled = false;
 
         int childCount = transform.childCount;
@@ -114,6 +130,9 @@ public class GrapplingHook : MonoBehaviour
             rbs[i].AddForce(transform.right * 25, ForceMode2D.Impulse);
             rbs[i].AddTorque(Random.Range(7f, 12f) * (Mathf.RoundToInt(Random.value)*2-1));
             rbs[i].transform.parent = null;
+            pc.cumulativeMass -= rbs[i].mass;
+
+            //StartCoroutine(rbs[i].GetComponent<Consumable>()?.JustLaunched());
         }
 
         transform.localPosition = startPos;
@@ -121,6 +140,7 @@ public class GrapplingHook : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
         coll.enabled = true;
+        transform.tag = "Debris";
 
         yield return null;
     }
