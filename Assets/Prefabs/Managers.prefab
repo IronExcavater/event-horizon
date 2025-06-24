@@ -81,13 +81,13 @@ MonoBehaviour:
   sfxSource: {fileID: 935702780607580831}
   musicExplorerSpace:
     audioClip: {fileID: 8300000, guid: 0b7ab6a6590b2af4cb153dc690f60c12, type: 3}
-    tempo: 100
+    tempo: 142
   musicTitan:
     audioClip: {fileID: 8300000, guid: 10baac3d267f4e94ca592ab5495f99e0, type: 3}
-    tempo: 100
+    tempo: 130
   musicDreams:
     audioClip: {fileID: 8300000, guid: 7d472d4453e9a04488361cfc8cbdfe5d, type: 3}
-    tempo: 100
+    tempo: 86
   grapplingHook: {fileID: 8300000, guid: 769379b4eb55b4bbb8cb4a98ee14e426, type: 3}
   explosion: {fileID: 8300000, guid: 8bc63caf2ae014a74a48633f09029010, type: 3}
   click: {fileID: 8300000, guid: 556b2686993104d8c8cb870b5f6ebead, type: 3}
