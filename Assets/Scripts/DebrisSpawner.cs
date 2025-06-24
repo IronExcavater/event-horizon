@@ -11,24 +11,40 @@ public class DebrisSpawner : MonoBehaviour
     [SerializeField] float defaultMinDist;
     [SerializeField] float defaultMaxDist;
 
+    [SerializeField] float defaultMaxMinDist;
+    [SerializeField] float defaultMaxMaxDist;
+
     float minDist;
     float maxDist;
 
     public bool spawnOnAwake = true;
     public bool isSpawning = true;
 
-    Blackhole blackhole;
+    [HideInInspector]
+    public Blackhole blackhole;
 
     [SerializeField] float spawnInterval;
     [SerializeField] float spawnRamp;
     [SerializeField] float minInterval;
 
+    public static DebrisSpawner instance;
+
     private void Awake()
     {
-        blackhole = GetComponent<Blackhole>();
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(instance);
+        }
+
+            blackhole = GetComponent<Blackhole>();
 
         minDist = defaultMinDist;
         maxDist = defaultMaxDist;
+
+        defaultMaxMinDist = blackhole.maxBlackholeSize * blackhole.maxBlackholeSize;
+        defaultMaxMaxDist = blackhole.maxBlackholeSize + defaultMaxMinDist;
     }
     private void Start()
     {
@@ -75,21 +91,51 @@ public class DebrisSpawner : MonoBehaviour
         //get random spawn distance
         float randomDist = Random.Range(minDist, maxDist);
 
+        //set points
+        debrisToSpawn.GetComponent<Consumable>().SetPoints(debris[randomIndex].points);
+
         //spawn debris
         blackhole.Add(Instantiate(debrisToSpawn, transform.position + new Vector3(spawnPos.x * randomDist, spawnPos.y * randomDist, 0), Quaternion.Euler(new Vector3(0, 0, randomRotation))));
+    }
+    public void SpawnDebris(int _index, Vector3 _position, int _amount)
+    {
+        while(_amount > 0)
+        {
+            //get random direction
+            float spawnDirX = Random.Range(-1.0f, 1.0f);
+            float spawnDirY = Random.Range(-1.0f, 1.0f);
+
+            //direction to spawn debris
+            Vector2 spawnPos = new Vector2(spawnDirX, spawnDirY).normalized;
+
+            //get random rotation
+            float randomRotation = Random.Range(0f, 360f);
+
+            //get debris game object
+            GameObject debrisToSpawn = debris[_index].debris[Random.Range(0, debris[_index].debris.Length)];
+
+            //get random spawn distance
+            float randomDist = Random.Range(0, 1.5f);
+
+            //spawn debris
+            blackhole.Add(Instantiate(debrisToSpawn, _position + new Vector3(spawnPos.x * randomDist, spawnPos.y * randomDist, 0), Quaternion.Euler(new Vector3(0, 0, randomRotation))));
+
+            //increment
+            _amount--;
+        }
     }
 
     public void ExtendSpawner(float _blackholeRad)
     {
-        minDist = _blackholeRad * 4;
+        minDist = _blackholeRad * _blackholeRad;
         maxDist = minDist + _blackholeRad;
 
-        minDist = Mathf.Clamp(minDist, defaultMinDist, Mathf.Infinity);
-        maxDist = Mathf.Clamp(maxDist, defaultMaxDist, Mathf.Infinity);
+        minDist = Mathf.Clamp(minDist, defaultMinDist, defaultMaxMinDist);
+        maxDist = Mathf.Clamp(maxDist, defaultMaxDist, defaultMaxMaxDist);
     }
     public void SetDefaultDist(float _maxSize)
     {
-        defaultMinDist = _maxSize * 4;
+        defaultMinDist = _maxSize * _maxSize;
         defaultMaxDist = defaultMinDist + _maxSize;
     }
 

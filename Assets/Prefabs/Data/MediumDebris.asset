@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MediumDebris
   m_EditorClassIdentifier: 
   spawnWeight: 30
+  points: 100
   debris:
   - {fileID: 2085528158908041506, guid: d5d0f70c0bf43bf4eb6963d29e006384, type: 3}
   - {fileID: 9097439662657326117, guid: 0316440d731011e4ba397b819a49bf75, type: 3}

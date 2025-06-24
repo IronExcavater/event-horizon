@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2392903415145069334}
   - component: {fileID: 2532812338485670036}
   - component: {fileID: 1005426656286570068}
-  - component: {fileID: 1605525182984672361}
-  m_Layer: 0
+  - component: {fileID: 1639819806634813181}
+  m_Layer: 8
   m_Name: AsteroidExplosive1
   m_TagString: Debris
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1605525182984672361
+--- !u!114 &1639819806634813181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,22 +107,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2484603524598451921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e510e64b0787f647a30016cf6cf3b53, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c6c44938a517af458c99c26cd63fc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
+  explodeRadius: 3
+  damageableLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6029906686799207896
 GameObject:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 175594738163644139, guid: 77bb201b65cc80647ba607c43351f89a, type: 3}
-  m_PrefabInstance: {fileID: 2496712729530946653}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2756218642431122301}
   - component: {fileID: 3900845769857599502}
   - component: {fileID: 5000887012670202524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AsteroidExplosive1
   m_TagString: Debris
   m_Icon: {fileID: 0}
@@ -132,8 +136,8 @@ GameObject:
 --- !u!4 &2756218642431122301
 Transform:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 658658967905086545, guid: 77bb201b65cc80647ba607c43351f89a, type: 3}
-  m_PrefabInstance: {fileID: 2496712729530946653}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6029906686799207896}
   serializedVersion: 2
@@ -147,16 +151,16 @@ Transform:
 --- !u!33 &3900845769857599502
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4506939128525661172, guid: 77bb201b65cc80647ba607c43351f89a, type: 3}
-  m_PrefabInstance: {fileID: 2496712729530946653}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6029906686799207896}
   m_Mesh: {fileID: -5495902117074765545, guid: 85f05ec23da44274088bf1ed3206806f, type: 3}
 --- !u!23 &5000887012670202524
 MeshRenderer:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1832729803820914494, guid: 77bb201b65cc80647ba607c43351f89a, type: 3}
-  m_PrefabInstance: {fileID: 2496712729530946653}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6029906686799207896}
   m_Enabled: 1
@@ -198,63 +202,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &2496712729530946653
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2392903415145069334}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Name
-      value: AsteroidExplosive1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 0}

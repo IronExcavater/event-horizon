@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1044033947615071095
+--- !u!1 &2023178060458029705
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4603712373686696428}
-  - component: {fileID: 5659578212783732467}
-  - component: {fileID: 3864796242839988725}
-  m_Layer: 0
-  m_Name: AsteroidMedium1
+  - component: {fileID: 1994948440126741861}
+  - component: {fileID: 6648857955667721902}
+  - component: {fileID: 75987966216602006}
+  m_Layer: 8
+  m_Name: AsteroidSmall2
   m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4603712373686696428
+--- !u!4 &1994948440126741861
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044033947615071095}
+  m_GameObject: {fileID: 2023178060458029705}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4692689087205130357}
+  m_Father: {fileID: 2484471843749553063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5659578212783732467
+--- !u!33 &6648857955667721902
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044033947615071095}
-  m_Mesh: {fileID: -5495902117074765545, guid: 85f05ec23da44274088bf1ed3206806f, type: 3}
---- !u!23 &3864796242839988725
+  m_GameObject: {fileID: 2023178060458029705}
+  m_Mesh: {fileID: -5495902117074765545, guid: 3aea9724330fd2745b73ac4814ceb69e, type: 3}
+--- !u!23 &75987966216602006
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044033947615071095}
+  m_GameObject: {fileID: 2023178060458029705}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2085528158908041506
+--- !u!1 &2352185768625186490
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,40 +95,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4692689087205130357}
-  - component: {fileID: 3645473736074796197}
-  - component: {fileID: 6620035018158260384}
-  - component: {fileID: 4755649062348745998}
-  m_Layer: 0
-  m_Name: AsteroidMedium1
+  - component: {fileID: 2484471843749553063}
+  - component: {fileID: 46197256942145905}
+  - component: {fileID: 7476410729340893046}
+  - component: {fileID: 8380267203431653055}
+  m_Layer: 8
+  m_Name: AsteroidSmall2
   m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4692689087205130357
+--- !u!4 &2484471843749553063
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085528158908041506}
+  m_GameObject: {fileID: 2352185768625186490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.06, y: 3.68, z: 0}
+  m_LocalPosition: {x: -3.6, y: 3.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4603712373686696428}
+  - {fileID: 1994948440126741861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &3645473736074796197
+--- !u!58 &46197256942145905
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085528158908041506}
+  m_GameObject: {fileID: 2352185768625186490}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -157,15 +157,15 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 1
---- !u!50 &6620035018158260384
+  m_Radius: 0.5
+--- !u!50 &7476410729340893046
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085528158908041506}
+  m_GameObject: {fileID: 2352185768625186490}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -185,16 +185,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &4755649062348745998
+--- !u!114 &8380267203431653055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085528158908041506}
+  m_GameObject: {fileID: 2352185768625186490}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e510e64b0787f647a30016cf6cf3b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
+  size: 1

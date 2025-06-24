@@ -32,7 +32,15 @@ public class Blackhole : MonoBehaviour
     public void Add(GameObject _obj)
     {
         debrisRb.Add(_obj.GetComponent<Rigidbody2D>());
+    }
+    //public void AddForce()
+    //{
+        
+    //}
 
+    public void RemoveDebris(Rigidbody2D _debrisRb)
+    {
+        debrisRb.Remove(_debrisRb);
     }
 
     private void FixedUpdate()
@@ -55,8 +63,8 @@ public class Blackhole : MonoBehaviour
         if (other.CompareTag("Debris"))
         {
             //increase blackhole size
-            float debrisSize = other.gameObject.GetComponent<Consumable>().size;
-            targetRadius += debrisSize / (8 * targetRadius);
+            Consumable debrisProperties = other.gameObject.GetComponent<Consumable>();
+            targetRadius += debrisProperties.size / (8 * targetRadius);
             gravity = Mathf.Pow(targetRadius + resetCount * maxBlackholeSize, 1.2f);
 
             //extend spawn area
@@ -66,7 +74,7 @@ public class Blackhole : MonoBehaviour
             scale.currentScale = targetRadius;
 
             //counter
-            debrisCount += Mathf.RoundToInt(debrisSize);
+            debrisCount += Mathf.RoundToInt(debrisProperties.size);
 
             //reduce blackhole size when max size is reached
             if(targetRadius >= maxBlackholeSize)
@@ -81,9 +89,7 @@ public class Blackhole : MonoBehaviour
             }
 
             //destroy debris
-            debrisRb.Remove(other.GetComponent<Rigidbody2D>());
-            Destroy(other.gameObject, 0.2f);
-            return;
+            debrisProperties.Damage();
         }
     }
 

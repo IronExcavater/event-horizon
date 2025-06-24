@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557178bd8e20d074791f640e10bff626, type: 3}
-  m_Name: ExplosiveDebris
+  m_Name: PowerUpDebris
   m_EditorClassIdentifier: 
-  spawnWeight: 20
+  spawnWeight: 5
+  points: 100
   debris:
-  - {fileID: 2484603524598451921, guid: 77bb201b65cc80647ba607c43351f89a, type: 3}
-  - {fileID: 8076204572272487566, guid: 2ca74e8d8051768458636e807bef095e, type: 3}
-  - {fileID: 7185297972384030457, guid: 3dfa4d6019dbf5e4cb869ff95b6e0870, type: 3}
+  - {fileID: 2821427028988580322, guid: ef023cbe295311b4189813d30f625170, type: 3}
+  - {fileID: 2821427028988580322, guid: 5dd5bec1681293f438bdd6946425b11f, type: 3}
+  - {fileID: 2821427028988580322, guid: ffc9102d09e8ee243984b58a0d4ad15a, type: 3}
