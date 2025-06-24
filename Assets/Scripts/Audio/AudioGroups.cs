@@ -3,7 +3,7 @@ using Utilities.Attributes;
 
 namespace Audio
 {
-    [CreateAssetMenu(fileName = "AudioGroups", menuName = "Generation/Generator Pools")]
+    [CreateAssetMenu(fileName = "AudioGroups", menuName = "Audio/AudioGroups")]
     public class AudioGroups : ScriptableObject
     {
         [SerializedDictionaryField(KeyLabel = "Key", ValueLabel = "Audio Clips")]
