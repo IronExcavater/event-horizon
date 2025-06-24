@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,8 +15,13 @@ public class DebrisSpawner : MonoBehaviour
     float maxDist;
 
     public bool spawnOnAwake = true;
+    public bool isSpawning = true;
 
     Blackhole blackhole;
+
+    [SerializeField] float spawnInterval;
+    [SerializeField] float spawnRamp;
+    [SerializeField] float minInterval;
 
     private void Awake()
     {
@@ -23,6 +29,10 @@ public class DebrisSpawner : MonoBehaviour
 
         minDist = defaultMinDist;
         maxDist = defaultMaxDist;
+    }
+    private void Start()
+    {
+        if (spawnOnAwake) StartCoroutine(StartAutoSpawn());
     }
     public void SpawnRandomDebris()
     {
@@ -71,11 +81,16 @@ public class DebrisSpawner : MonoBehaviour
 
     public void ExtendSpawner(float _blackholeRad)
     {
-        minDist = _blackholeRad * 2;
+        minDist = _blackholeRad * 4;
         maxDist = minDist + _blackholeRad;
 
         minDist = Mathf.Clamp(minDist, defaultMinDist, Mathf.Infinity);
         maxDist = Mathf.Clamp(maxDist, defaultMaxDist, Mathf.Infinity);
+    }
+    public void SetDefaultDist(float _maxSize)
+    {
+        defaultMinDist = _maxSize * 4;
+        defaultMaxDist = defaultMinDist + _maxSize;
     }
 
     private void OnDrawGizmosSelected()
@@ -91,6 +106,23 @@ public class DebrisSpawner : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             SpawnRandomDebris();
+        }
+    }
+
+    IEnumerator StartAutoSpawn()
+    {
+        while (isSpawning)
+        {
+            SpawnRandomDebris();
+
+            if (spawnInterval <= minInterval)
+            {
+                spawnInterval = minInterval;
+            }
+
+            yield return new WaitForSeconds(spawnInterval);
+
+            spawnInterval -= spawnRamp * Time.deltaTime;
         }
     }
 }
