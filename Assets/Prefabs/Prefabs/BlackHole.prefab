@@ -5258,7 +5258,6 @@ GameObject:
   - component: {fileID: 8574040149057276295}
   - component: {fileID: 3800242518381902879}
   - component: {fileID: 8420570336871423493}
-  - component: {fileID: 9091336744501232896}
   - component: {fileID: 7010215462967057130}
   m_Layer: 0
   m_Name: BlackHole
@@ -5403,25 +5402,9 @@ MonoBehaviour:
   spawnOnAwake: 1
   isSpawning: 1
   blackhole: {fileID: 0}
-  score: {fileID: 0}
   spawnInterval: 1
   spawnRamp: 0.25
   minInterval: 0.25
---- !u!114 &9091336744501232896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4417557781095493580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e97ca33c51328a43a0d685727b29175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  time: 0
-  levelUI: {fileID: 0}
 --- !u!82 &7010215462967057130
 AudioSource:
   m_ObjectHideFlags: 0

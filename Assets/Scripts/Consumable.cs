@@ -42,7 +42,7 @@ public class Consumable : MonoBehaviour
     public virtual void DamageWithPoints() //for player consumption
     {
         //add to score
-        DebrisSpawner.instance.score.UpdateScore(points);
+        Level.GetScore += points;
 
         //spawn points ui/text?
 

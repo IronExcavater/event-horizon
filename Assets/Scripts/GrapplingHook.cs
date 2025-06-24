@@ -83,11 +83,13 @@ public class GrapplingHook : MonoBehaviour
             collision.tag = "Player";
 
             grappled = true;
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.grapplingHook);
         }
 
         if (collision.CompareTag("Powerup"))
         {
             StartCoroutine(pc.FuelBuff(6f));
+            AudioManager.PlaySfxOneShot(AudioManager.Audio.powerUp);
             Destroy(collision.gameObject);
         }
     }

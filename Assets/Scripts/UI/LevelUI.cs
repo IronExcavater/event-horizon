@@ -33,9 +33,12 @@ namespace UI
             pauseMenu.blocksRaycasts = false;
             pauseMenu.interactable = false;
 
+            if (scoreText != null) scoreText.text = Score.Value.ToString("F2");
+            if (timerText != null) timerText.text = Timer.Value.FormatToTime();
+
             Score.AddListener((_, _) =>
             {
-                if (scoreText != null) scoreText.text = $"Score: {Score.Value}";
+                if (scoreText != null) scoreText.text = Score.Value.ToString("F2");
             });
 
             Timer.AddListener((_, _) =>
@@ -75,6 +78,7 @@ namespace UI
         {
             AudioManager.PlaySfxOneShot(AudioManager.Audio.click);
             LoadManager.SaveNewScore(Level.GetScore, Level.GetTime);
+            //Paused.Value = false;
             LoadManager.LoadScene(0, LoadSceneMode.Single);
         }
 

@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Color fillCol;
     [SerializeField] private AudioSource engineSource;
 
+    public FuelManager fuelManager;
+
     Camera mainCam;
     Rigidbody2D rb;
 
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
         mainCam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         currentFuel = maxFuel;
+        fuelManager.maxFuel = maxFuel;
     }
 
     private void Update()
@@ -48,14 +51,9 @@ public class PlayerController : MonoBehaviour
             fuelGauge.position = mouseScreenPos;
         }
 
-        if (fuelFillImage != null)
-        {
-            fuelFillImage.fillAmount = currentFuel / maxFuel;
-        }
-
-
+        fuelManager.currentFuel = currentFuel;
         engineSource.volume = moveSpeed * SpeedMultiplier();
-        
+
     }
 
     private void FixedUpdate()

@@ -35,7 +35,7 @@ namespace UI
 
         private void Awake()
         {
-            scoreText.text = LoadManager.GameData.MaxScore.ToString();
+            scoreText.text = LoadManager.GameData.MaxScore.ToString("F2");
             timerText.text = LoadManager.GameData.MaxTime.FormatToTime();
         }
 

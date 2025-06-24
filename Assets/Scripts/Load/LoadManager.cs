@@ -86,6 +86,7 @@ namespace Load
             var scene = SceneManager.GetSceneByBuildIndex(buildIndex);
             IsLoading = false;
             OnSceneLoaded?.Invoke(scene);
+            Time.timeScale = 1;
 
             Debug.Log($"Loaded scene {buildIndex}");
             if (loadMode == LoadSceneMode.Single && TransitionUI.Instance != null)
