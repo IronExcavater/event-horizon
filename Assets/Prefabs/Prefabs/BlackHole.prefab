@@ -5378,6 +5378,7 @@ MonoBehaviour:
   useGravity: 1
   gravity: 1
   maxBlackholeSize: 7
+  player: {fileID: 0}
 --- !u!114 &8420570336871423493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5399,6 +5400,8 @@ MonoBehaviour:
   defaultMaxDist: 25
   defaultMaxMinDist: 0
   defaultMaxMaxDist: 0
+  minDist: 0
+  maxDist: 0
   spawnOnAwake: 1
   isSpawning: 1
   blackhole: {fileID: 0}
@@ -5414,7 +5417,7 @@ AudioSource:
   m_GameObject: {fileID: 4417557781095493580}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7799883383503397040, guid: 1bb9ef254212f254aacc2efe8269f61b, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4436efbaae85c48ddac0da8e0b2acaee, type: 3}
   m_Resource: {fileID: 8300000, guid: 4436efbaae85c48ddac0da8e0b2acaee, type: 3}
   m_PlayOnAwake: 1

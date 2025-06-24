@@ -41,7 +41,6 @@ public class DebrisSpawner : MonoBehaviour
         }
 
         blackhole = GetComponent<Blackhole>();
-        score = GetComponent<ScoreManager>();
 
         minDist = defaultMinDist;
         maxDist = defaultMaxDist;
@@ -160,7 +159,6 @@ public class DebrisSpawner : MonoBehaviour
 
     IEnumerator StartAutoSpawn()
     {
-        score.StartTimer();
         while (isSpawning)
         {
             SpawnRandomDebris();
