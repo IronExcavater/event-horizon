@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 5893915683521717384}
   m_Layer: 0
   m_Name: SpaceshipParent
-  m_TagString: Untagged
+  m_TagString: Rocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
   fuelFillImage: {fileID: 0}
   fillCol: {r: 1, g: 0.7607843, b: 0, a: 1}
   engineSource: {fileID: 6444927128271404289}
+  fuelManager: {fileID: 0}
   cumulativeMass: 0
 --- !u!50 &8116151021674756924
 Rigidbody2D:
