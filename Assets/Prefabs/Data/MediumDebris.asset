@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557178bd8e20d074791f640e10bff626, type: 3}
-  m_Name: NormalDebris
+  m_Name: MediumDebris
   m_EditorClassIdentifier: 
-  spawnWeight: 100
+  spawnWeight: 30
+  points: 100
   debris:
-  - {fileID: 2804806730040335742, guid: 93539ff4e3acadc46a5dbe5a1f3968c3, type: 3}
-  - {fileID: 2804806730040335742, guid: 66004f05aa400784c892ba7880cdffb6, type: 3}
+  - {fileID: 2085528158908041506, guid: d5d0f70c0bf43bf4eb6963d29e006384, type: 3}
+  - {fileID: 9097439662657326117, guid: 0316440d731011e4ba397b819a49bf75, type: 3}
+  - {fileID: 5769202092677950765, guid: a13aa4c91f16c9e4cb14103c9d3ef83a, type: 3}
