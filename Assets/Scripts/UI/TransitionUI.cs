@@ -24,7 +24,7 @@ namespace UI
             AnimationManager.RemoveTweens(Instance);
             var fade = AnimationManager.CreateTween(Instance, alpha => Instance._canvasGroup.alpha = alpha,
                 Instance._canvasGroup.alpha, fadeIn ? 0 : 1,
-                Instance.fadeDuration, Easing.EaseInOutCubic);
+                Instance.fadeDuration, Easing.EaseInOutCubic, false);
             yield return new WaitUntil(() => !AnimationManager.HasTween(fade));
         }
     }
