@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private RectTransform fuelGauge;
     [SerializeField] private Image fuelFillImage;
     [SerializeField] Color fillCol;
+    [SerializeField] private AudioSource engineSource;
 
     Camera mainCam;
     Rigidbody2D rb;
@@ -51,6 +52,10 @@ public class PlayerController : MonoBehaviour
         {
             fuelFillImage.fillAmount = currentFuel / maxFuel;
         }
+
+
+        engineSource.volume = moveSpeed * SpeedMultiplier();
+        
     }
 
     private void FixedUpdate()
