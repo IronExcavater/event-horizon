@@ -88,10 +88,11 @@ MonoBehaviour:
   musicDreams:
     audioClip: {fileID: 8300000, guid: 7d472d4453e9a04488361cfc8cbdfe5d, type: 3}
     tempo: 86
-  grapplingHook: {fileID: 8300000, guid: 769379b4eb55b4bbb8cb4a98ee14e426, type: 3}
+  grapplingHook: {fileID: 8300000, guid: 7c62d891a6aa14d2a865976c747bc99f, type: 3}
   explosion: {fileID: 8300000, guid: 8bc63caf2ae014a74a48633f09029010, type: 3}
   click: {fileID: 8300000, guid: 556b2686993104d8c8cb870b5f6ebead, type: 3}
   powerDown: {fileID: 8300000, guid: e2836fdbfab814141800302628804ae0, type: 3}
+  powerUp: {fileID: 8300000, guid: 6e01c618ed3ec43cd83ef30a6f1f44c8, type: 3}
   loopMusic: []
 --- !u!1 &4364880092903777155
 GameObject:
