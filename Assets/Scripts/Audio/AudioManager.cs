@@ -71,6 +71,8 @@ public class AudioManager : MonoBehaviour
         AddMusicToLoop(musicDreams);
         AddMusicToLoop(musicExplorerSpace);
         AddMusicToLoop(musicTitan);
+
+        
     }   
     public static void AddMusicToLoop(MusicTuple clip, int loopIndex = -1)
     {
