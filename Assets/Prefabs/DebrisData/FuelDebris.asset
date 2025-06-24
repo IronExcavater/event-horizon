@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557178bd8e20d074791f640e10bff626, type: 3}
   m_Name: FuelDebris
   m_EditorClassIdentifier: 
-  spawnWeight: 10
+  spawnWeight: 15
   points: 100
   debris:
   - {fileID: 2821427028988580322, guid: 36eb7e01d993cf041b78f85e28502827, type: 3}

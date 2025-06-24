@@ -99,8 +99,8 @@ GameObject:
   - component: {fileID: 6748476415223415627}
   - component: {fileID: -5547828591247331054}
   m_Layer: 8
-  m_Name: Powerup2
-  m_TagString: Debris
+  m_Name: Powerup1
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,4 +197,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  buff: 2
+  triggerTime: 1
+  buff: 1

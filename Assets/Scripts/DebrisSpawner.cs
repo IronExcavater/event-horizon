@@ -15,8 +15,10 @@ public class DebrisSpawner : MonoBehaviour
     [SerializeField] float defaultMaxMinDist;
     [SerializeField] float defaultMaxMaxDist;
 
-    float minDist;
-    float maxDist;
+    [HideInInspector]
+    public float minDist;
+    [HideInInspector]
+    public float maxDist;
 
     public bool spawnOnAwake = true;
     public bool isSpawning = true;
@@ -41,7 +43,8 @@ public class DebrisSpawner : MonoBehaviour
             Destroy(instance);
         }
 
-            blackhole = GetComponent<Blackhole>();
+        blackhole = GetComponent<Blackhole>();
+        score = GetComponent<ScoreManager>();
 
         minDist = defaultMinDist;
         maxDist = defaultMaxDist;
@@ -160,6 +163,7 @@ public class DebrisSpawner : MonoBehaviour
 
     IEnumerator StartAutoSpawn()
     {
+        score.StartTimer();
         while (isSpawning)
         {
             SpawnRandomDebris();

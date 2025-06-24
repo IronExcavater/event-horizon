@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 isBoosting = false;
         }*/
     }
-
+    Coroutine fuelBuffRoutine;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Debris"))
@@ -93,8 +93,10 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.PlaySfxOneShot(AudioManager.Audio.powerUp);
             /*currentFuel = maxFuel;*/
-            StartCoroutine(FuelBuff(5f));
-            Destroy(collision.gameObject);
+            if (fuelBuffRoutine != null)
+                StopCoroutine(fuelBuffRoutine);
+            fuelBuffRoutine = StartCoroutine(FuelBuff(5f));
+            DebrisSpawner.instance.blackhole.RemoveDebris(rb);
         }
     }
 
@@ -123,13 +125,33 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * rotateSpeed + SpeedMultiplier());
     }
 
+    Vector3 BlackholePull()
+    {
+        float dist = Vector3.Distance(DebrisSpawner.instance.blackhole.transform.position, transform.position);
+        Vector3 dir = (DebrisSpawner.instance.blackhole.transform.position - transform.position).normalized;
+
+        return (dir * (1 / (dist / DebrisSpawner.instance.blackhole.gravity)));
+
+        //float dist = Vector3.Distance(transform.position, _rb.gameObject.transform.position);
+        //Vector3 dir = (transform.position - _rb.gameObject.transform.position).normalized;
+        //_rb.AddForce(dir * (1 / (dist / gravity)));
+    }
+
     /// <summary>
     /// Moves rocket in the direction it's facing. Returns the forward velocity.
     /// </summary>
     Vector3 MoveTowardsTarget()
     {
         Vector3 vector = transform.right * Time.fixedDeltaTime * moveSpeed * SpeedMultiplier();
-        transform.position += vector + impactOffset;
+        if(DebrisSpawner.instance.maxDist >= Vector3.Distance(DebrisSpawner.instance.blackhole.transform.position, transform.position))
+        {
+            transform.position += vector + impactOffset + (BlackholePull() * 0.7f);
+        }
+        else
+        {
+            transform.position += vector + impactOffset + (BlackholePull() * 100f);
+        }
+
         return vector;
     }
 
@@ -191,5 +213,10 @@ public class PlayerController : MonoBehaviour
     Vector2 TargetDir()
     {
         return MouseTargetPos() - (Vector2)transform.position;
+    }
+
+    public void PlayerDeath()
+    {
+        Destroy(gameObject, 1f);
     }
 }
