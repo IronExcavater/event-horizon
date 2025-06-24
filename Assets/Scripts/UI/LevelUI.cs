@@ -11,7 +11,7 @@ namespace UI
 {
     public class LevelUI : MonoBehaviour
     {
-        public readonly Property<int> Score = new();
+        public readonly Property<float> Score = new();
         public readonly Property<float> Timer = new();
 
         [Header("HUD")]
@@ -67,6 +67,7 @@ namespace UI
 
         public void OnExitButton()
         {
+            LoadManager.SaveNewScore(Level.GetScore, Level.GetTime);
             LoadManager.LoadScene(0, LoadSceneMode.Single);
         }
 
