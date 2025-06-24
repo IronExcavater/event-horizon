@@ -11,8 +11,6 @@ namespace Audio
 
         [Header("Audio Clips:")]
         [SerializeField] private AudioGroups _audioGroups;
-
-        public static AudioGroups AudioGroups => Instance._audioGroups;
     }
 
 }
