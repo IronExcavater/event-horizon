@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     bool isBoosting = false;
     float currentFuel;
+    Vector3 impactOffset = Vector3.zero;
 
     private void Awake()
     {
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
         RotateSelf();
         MoveTowardsTarget();
 
-        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.fixedDeltaTime * 6);
+        mainCam.transform.position = Vector3.Lerp(mainCam.transform.position, new Vector3(transform.position.x, transform.position.y, -10), Time.fixedDeltaTime * 7);
 
         if (currentFuel > 0f)
         {
@@ -82,11 +84,43 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Moves rocket in the direction it's facing.
+    /// Moves rocket in the direction it's facing. Returns the forward velocity.
     /// </summary>
-    void MoveTowardsTarget()
+    Vector3 MoveTowardsTarget()
     {
-        transform.position += transform.right * Time.deltaTime * moveSpeed * SpeedMultiplier();
+        Vector3 vector = transform.right * Time.fixedDeltaTime * moveSpeed * SpeedMultiplier();
+        transform.position += vector + impactOffset;
+        return vector;
+    }
+
+    /* public IEnumerator ImpactCoroutine(Vector3 hitDir, float impactMagnitude)
+     {
+         impactTime = 0;
+         float increment = 0.3f;
+         while (impactMagnitude > 0.1f)
+         {
+             Debug.Log("impacting");
+             ImpactVector(hitDir, impactMagnitude);
+             impactMagnitude = Mathf.Lerp(impactMagnitude, 0, Time.deltaTime * increment);
+             yield return new WaitForFixedUpdate();
+             impactTime = Mathf.Clamp01(impactTime + increment);
+         }
+         impactTime = 1;
+     }*/
+
+    public IEnumerator ImpactCoroutine(Vector3 hitDir, float impactMagnitude)
+    {
+        float decayRate = 5f; 
+        Vector3 impactVelocity = hitDir.normalized * impactMagnitude;
+        while (impactVelocity.magnitude > 0.1f)
+        {
+            Debug.Log("test");
+            impactOffset = impactVelocity;
+            impactVelocity = Vector3.Lerp(impactVelocity, Vector3.zero, decayRate * Time.deltaTime);
+            yield return null;
+        }
+
+        impactOffset = Vector3.zero;
     }
 
     /// <summary>
