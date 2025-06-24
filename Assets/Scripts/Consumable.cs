@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Consumable : MonoBehaviour
@@ -9,6 +10,8 @@ public class Consumable : MonoBehaviour
     ParticleSystem particle;
 
     int points; //points receive
+
+    public float triggerTime = 1f;
 
     private void Awake()
     {
@@ -79,5 +82,12 @@ public class Consumable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         TriggerEnter2D(collision);
+    }
+
+    public IEnumerator JustLaunched()
+    {
+        collider2D.isTrigger = true;
+        yield return new WaitForSeconds(triggerTime);
+        collider2D.isTrigger = false;
     }
 }
