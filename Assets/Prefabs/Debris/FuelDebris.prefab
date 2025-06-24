@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782434444208416947}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &299460264896566564
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8ec21db3d70551544ad81d6dc55962a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,10 +97,10 @@ GameObject:
   - component: {fileID: 57551742325293901}
   - component: {fileID: 6719024195907557660}
   - component: {fileID: 6748476415223415627}
-  - component: {fileID: -5547828591247331054}
+  - component: {fileID: 8262591690090309454}
   m_Layer: 8
-  m_Name: Powerup1
-  m_TagString: Debris
+  m_Name: FuelDebris
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -184,7 +184,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-5547828591247331054
+--- !u!114 &8262591690090309454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,8 +193,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2821427028988580322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ee35333c055b742ac53883245f5e99, type: 3}
+  m_Script: {fileID: 11500000, guid: b9f14f71b67a6b446a4c9a98248f83ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
-  buff: 1
+  triggerTime: 1

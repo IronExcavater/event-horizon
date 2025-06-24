@@ -132,7 +132,7 @@ public class GrapplingHook : MonoBehaviour
             rbs[i].transform.parent = null;
             pc.cumulativeMass -= rbs[i].mass;
 
-            //StartCoroutine(rbs[i].GetComponent<Consumable>()?.JustLaunched());
+            StartCoroutine(rbs[i].GetComponent<Consumable>()?.JustLaunched());
         }
 
         transform.localPosition = startPos;

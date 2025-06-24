@@ -20,6 +20,8 @@ public class Blackhole : MonoBehaviour
 
     int debrisCount = 0;
 
+    public PlayerController player;
+
     private void Awake()
     {
         coll = GetComponent<CircleCollider2D>();
@@ -60,7 +62,7 @@ public class Blackhole : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Debris"))
+        if (other.CompareTag("Debris") || other.CompareTag("Powerup"))
         {
             //increase blackhole size
             Consumable debrisProperties = other.gameObject.GetComponent<Consumable>();

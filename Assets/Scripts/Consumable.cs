@@ -74,7 +74,7 @@ public class Consumable : MonoBehaviour
         if (collision.CompareTag("Debris"))
         {
             //Damage collision
-            collision.GetComponent<Consumable>().DamageWithPoints();
+            collision.GetComponent<Consumable>()?.DamageWithPoints();
             DamageWithPoints();
         }
     }
