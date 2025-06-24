@@ -5362,7 +5362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9258dc97259b94c47802705d2f2d20fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScale: 56.7
+  currentScale: 1
   smoothTime: 1
 --- !u!114 &3800242518381902879
 MonoBehaviour:
