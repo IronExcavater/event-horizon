@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Blackhole))]
+[RequireComponent(typeof(ScoreManager))]
 public class DebrisSpawner : MonoBehaviour
 {
     [SerializeField] List<Debris> debris;
@@ -22,6 +23,8 @@ public class DebrisSpawner : MonoBehaviour
 
     [HideInInspector]
     public Blackhole blackhole;
+    [HideInInspector]
+    public ScoreManager score;
 
     [SerializeField] float spawnInterval;
     [SerializeField] float spawnRamp;

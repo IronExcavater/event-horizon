@@ -10,8 +10,6 @@ public class Consumable : MonoBehaviour
 
     int points; //points receive
 
-    //Refence to Score Manager for smth
-
     private void Awake()
     {
         collider2D = GetComponent<CircleCollider2D>();
@@ -41,6 +39,8 @@ public class Consumable : MonoBehaviour
     public virtual void DamageWithPoints() //for player consumption
     {
         //add to score
+        DebrisSpawner.instance.score.UpdateScore(points);
+
         //spawn points ui/text?
 
         //remove from blackhole
